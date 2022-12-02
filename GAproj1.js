@@ -1,11 +1,4 @@
-// 1. div.background 1200x1000
-// 2. div.player1 50x50
-// 3. move left / right (bonus: move up/down)  (bonus: move player1 with mouse)
-// 4. fire 17x47
-// 5. game loop
-// 6. div.enemy
-// 7. enemy objects / enemy movement
-// 8. collision detection
+
 
 let player1 = {
     left: 30,
