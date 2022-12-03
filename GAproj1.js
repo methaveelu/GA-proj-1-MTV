@@ -76,7 +76,6 @@ document.addEventListener("keydown", function(e){
         player1.top = player1.top - 20;
         // console.log("Up");
     }
-    
 
     //setting the limit to the movement.. to ensure the player is not out of frame
     if (e.code === 'KeyS' && player1.top <= 575) {
@@ -84,7 +83,16 @@ document.addEventListener("keydown", function(e){
         player1.top = player1.top + 20;
         // console.log("Down");
     }
-   
+    if (e.code === 'KeyA' && player1.left >= 0) {
+        
+        player1.left = player1.left - 20;
+        // console.log("Left");
+    }
+    if (e.code === 'KeyD' && player1.left <= 1280) {
+        
+        player1.left = player1.left + 20;
+        // console.log("Right");
+    }
     if (e.code === 'Space') {
      
         //push the coordinates of the 1st projectile into missile array 
@@ -100,6 +108,7 @@ document.addEventListener("keydown", function(e){
 
 function moveplayer1() {
     document.getElementById('player1').style.top = player1.top + 'px';
+    document.getElementById('player1').style.left = player1.left + 'px';
 }
 
 function drawMissiles() {
@@ -145,22 +154,22 @@ function bulletCollision() {
     }
 }
 
-// function enemyPlayerCollision() {
-//     for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
-//         for (let missile1 = 0; missile1 < missiles.length; missile1 ++) {
-//             if ( 
-//                 missiles[missile1].left <= (enemiesLocation[enemy].left + 99)&&
-//                 missiles[missile1].left >= enemiesLocation[enemy].left &&
-//                 missiles[missile1].top <= (enemiesLocation[enemy].top + 150)  &&
-//                 missiles[missile1].top >= enemiesLocation[enemy].top
-//             ) 
-//             {
-//                 enemiesLocation.splice(enemy, 1); 
-//                 missiles.splice(missile1, 1);
-//             } 
-//         }
-//     }
-// }
+function enemyPlayerCollision() {
+    for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
+            if ( 
+                player1.left <= (enemiesLocation[enemy].left + 200 )&&
+                player1.left >= enemiesLocation[enemy].left  &&
+                player1.top <= (enemiesLocation[enemy].top + 150)  &&
+                player1.top >= enemiesLocation[enemy].top
+            ) 
+            {
+            document.getElementById("player1").style.display = "none";
+            alert("GAME OVER SUN WU KONG!")
+            } 
+    }
+    
+}
+setInterval(enemyPlayerCollision, 10)
 
 function loopGame() {
 
