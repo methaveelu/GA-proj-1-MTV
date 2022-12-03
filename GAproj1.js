@@ -1,12 +1,14 @@
 
-
+//initial player position
 let player1 = {
     left: 30,
     top: 400
 };
 
+//missile array to be filled up when the space bar is tapped
 let missiles = [];
 
+//pre-defined coordinates of the enemy spawning area
 let enemiesLocation = [
     { left: 1000, top: 0 },
     { left: 1000, top: 100 },
@@ -23,23 +25,64 @@ let enemiesLocation = [
     { left: 1100, top: 200 },
     { left: 1100, top: 100 },
     { left: 1100, top: 0 }
-   
 ];
 
-document.onkeydown = function(e) {
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+let random_left = getRandomInt(1000, 1100);// this left px can stay fixed 
+let random_top = getRandomInt(0, 600); // top px should vary, but this only random generate once
+
+
+function enemySpawn() {
+    random_top = getRandomInt(0, 600); // top px varies every 1 sec
+    enemiesLocation.push({left : random_left, top: random_top})
+}
+setInterval(enemySpawn, 1000)
+
+
+function drawEnemies() {
+
+    document.getElementById('enemies').innerHTML = ""
+    for(let i = 0 ; i < enemiesLocation.length ; i++ ) {
+        
+        document.getElementById('enemies').innerHTML += `<div class='enemy' style='left:${enemiesLocation[i].left}px; top:${enemiesLocation[i].top}px'></div>`;
+    
+    }
+
+}
+
+function moveEnemies() {
+    for(let i = 0 ; i < enemiesLocation.length ; i++ ) {
+        
+        if(enemiesLocation[i].left > 0){
+        enemiesLocation[i].left = enemiesLocation[i].left - 8;
+        }
+        //ensure enemies dont go out of frame
+        else if (enemiesLocation[i].left <= 0){
+        enemiesLocation.splice(i, 1)
+        }
+    }
+}
+
+
+document.addEventListener("keydown", function(e){
+    //add keyboard event e.code to detect which button is pressed 
     //setting the limit to the movement.. to ensure the player is not out of frame
     if (e.code === 'KeyW' && player1.top >= 0) {
-        // Left
+        
         player1.top = player1.top - 20;
-        console.log("Up");
+        // console.log("Up");
     }
     
 
     //setting the limit to the movement.. to ensure the player is not out of frame
     if (e.code === 'KeyS' && player1.top <= 575) {
-        // Left
+        
         player1.top = player1.top + 20;
-        console.log("Down");
+        // console.log("Down");
     }
    
     if (e.code === 'Space') {
@@ -49,16 +92,14 @@ document.onkeydown = function(e) {
             left: player1.left + 70,
             top: player1.top 
         });
-        console.log(missiles)
-        drawMissiles()
-        moveMissiles();
+       
     }
-    movePlayer1();
-}
+    moveplayer1();
 
-function movePlayer1() {
+})
+
+function moveplayer1() {
     document.getElementById('player1').style.top = player1.top + 'px';
-    document.getElementById('player1').style.top = player1.top - 'px';
 }
 
 function drawMissiles() {
@@ -73,70 +114,61 @@ function drawMissiles() {
 
 function moveMissiles() {
     for(let i = 0 ; i < missiles.length ; i++ ) {
+        
         if(missiles[i].left < 1200){
         missiles[i].left = missiles[i].left + 8
         }
+
         else if(missiles[i].left >= 1200){
         missiles.splice(i, 1)
         }
-    }
-}
-
-
-
-function drawEnemies() {
-
-    document.getElementById('enemies').innerHTML = ""
-    for(let i = 0 ; i < enemiesLocation.length ; i++ ) {
-        
-        document.getElementById('enemies').innerHTML += `<div class='enemy' style='left:${enemiesLocation[i].left}px; top:${enemiesLocation[i].top}px'></div>`;
         
     }
 }
 
 
 
-function moveEnemies() {
-    for(let i = 0 ; i < enemiesLocation.length ; i++ ) {
-        if(enemiesLocation[i].left > 0){
-        enemiesLocation[i].left = enemiesLocation[i].left - 8;
-        }
-        else if (enemiesLocation[i].left <= 0){
-        enemiesLocation.splice(i, 1)
-    
-        }
-  
-    }
-}
-
-
-
-function collisionDetection() {
+function bulletCollision() {
     for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
         for (let missile1 = 0; missile1 < missiles.length; missile1 ++) {
             if ( 
-                missiles[missile1].left >= enemiesLocation[enemy].left  &&
-                missiles[missile1].left <= (enemiesLocation[enemy].left + 99)  &&
-                missiles[missile1].top <= (enemiesLocation[enemy].top + 99)  &&
+                missiles[missile1].left <= (enemiesLocation[enemy].left + 99)&&
+                missiles[missile1].left >= enemiesLocation[enemy].left &&
+                missiles[missile1].top <= (enemiesLocation[enemy].top + 150)  &&
                 missiles[missile1].top >= enemiesLocation[enemy].top
             ) 
             {
-                enemiesLocation.splice(enemy, 1);
+                enemiesLocation.splice(enemy, 1); 
                 missiles.splice(missile1, 1);
-            }
+            } 
         }
     }
 }
 
+// function enemyPlayerCollision() {
+//     for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
+//         for (let missile1 = 0; missile1 < missiles.length; missile1 ++) {
+//             if ( 
+//                 missiles[missile1].left <= (enemiesLocation[enemy].left + 99)&&
+//                 missiles[missile1].left >= enemiesLocation[enemy].left &&
+//                 missiles[missile1].top <= (enemiesLocation[enemy].top + 150)  &&
+//                 missiles[missile1].top >= enemiesLocation[enemy].top
+//             ) 
+//             {
+//                 enemiesLocation.splice(enemy, 1); 
+//                 missiles.splice(missile1, 1);
+//             } 
+//         }
+//     }
+// }
 
-function loopOnce() {
-    setTimeout(loopOnce, 50) //setInterval seems to accelerate the projectile... nested loop
-//     
+function loopGame() {
+
     moveMissiles()
     drawMissiles()
     moveEnemies()
     drawEnemies()
-    collisionDetection()
+    bulletCollision()
     
 }
-loopOnce()
+setInterval(loopGame, 50)    
