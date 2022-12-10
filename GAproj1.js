@@ -5,6 +5,7 @@ let player1 = {
     top: 400
 };
 
+
 //missile array to be filled up when the space bar is tapped
 let missiles = [];
 
@@ -137,6 +138,7 @@ function moveMissiles() {
 
 //////////////////////bullet and enemy collision/////////////////
 
+
 let bulletCollideCount = 10
 function bulletCollision() {
   
@@ -165,11 +167,22 @@ function bulletCollision() {
     activateBoss()
 }
 
+let Boss = {
+    left: 600,
+    top: 20
+};
 function activateBoss(){
-
-    
-
+    let fire = document.getElementById('enemies')
+    if (bulletCollideCount==0) {
+    document.getElementById('boss').style.display = "block";
+    //  fire.setAttribute('width', `${133}px` ) ;
+    //  fire.setAttribute('height', `${90}px` ) ;
+    //  fire.setAttribute('background-image', "element_pictures/fire.png" );
+    }
 }
+
+
+// function killBoss
 // function bulletOnBoss() {
 //     let collideCount = []
 //     for(let i=0; i < 3; i++){
@@ -252,12 +265,12 @@ function loopGame() {
     moveEnemies()
     drawEnemies()
     bulletCollision()
-    
+    activateBoss()
     enemyPlayerCollision()
     // bulletOnBoss()
     
 }
-let startgame = setInterval(loopGame, 50)   
+let startgame = setInterval(loopGame, 40)   
 // startgame() 
 
 // do layering to ensure the health bar is above the player and monkey.
