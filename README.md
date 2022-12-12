@@ -27,13 +27,14 @@ let enemiesLocation = [];
 * Prior to spawning the enemy, a random generator function is required such that the enemy doesnt only appear in 1 row.
 * preset the 'Top' & 'Left' properties of the enemy to ensure it stays within the range of the background image
 * Push the randomize 'Top' & 'Left' values into the empty 'enemiesLocation' array.
-* 
+
 ```javascript
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
 } 
+
 let random_left = getRandomInt(1000, 1100);
 let random_top = getRandomInt(0, 600); 
 
@@ -43,3 +44,6 @@ function enemySpawn() {
 }
 setInterval(enemySpawn, 1000)
 ```
+### Enemy Spawn & Movement
+
+
