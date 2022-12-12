@@ -45,11 +45,11 @@ function enemySpawn() {
 setInterval(enemySpawn, 1000)
 ```
 ### Enemy Spawn & Movement
-A function called 'drawEnemies' will extract the randomize enemy location values and  
+* A function called 'drawEnemies' will extract the randomize enemy location values and input them to a new 'enemy' div tag, which will be recurssively created as long as the game is running.
 
+- To ensure the enemy location is updated on the screen as it moves from left to right. 
 
-to ensure the enemy location is updated on the screen as it moves from left to right. 
-works in conjunction with the moveEnemies function. 
+clears initial location of enemy to ensure enemy doesnt become a 'long train' fo enemies 
 
 enemy will "appear and disappear" from left to right. 
 
