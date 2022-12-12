@@ -9,3 +9,17 @@ This is a simple "monkey king" theme 2D shooting game, whereby enemies will be r
 ## Program Structure
 
 ### initialisation
+* pre-define the player positioning in JS, such that other functions within the code can access the value to perform their respective tasks.
+* missile array to be filled up when the space bar is tapped
+* empty array to push in the coordinates of the enemy spawning location
+
+```javascript
+let player1 = {
+    left: 30,
+    top: 300
+};
+
+let missiles = [];
+
+let enemiesLocation = [];
+```
