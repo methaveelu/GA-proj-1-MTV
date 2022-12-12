@@ -23,3 +23,6 @@ let missiles = [];
 
 let enemiesLocation = [];
 ```
+### Random Location Generator
+* Prior to spawning the enemy, a random generator function is required such that the enemy doesnt only appear in 1 row.
+* preset the 
