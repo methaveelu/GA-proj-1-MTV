@@ -81,10 +81,10 @@ function moveEnemies() {
     }
 }
 ```
-### Move player 
+### Move player & shoot projectile
 * The addEventListener() method is required to detect which key on the keyboard is pressed. Thereafter the function will process the movement of the player if one of the assigned keys are pressed. 
-* For the purpose of this game, 'W' moves the player upwards, 'A' moves the player to the left, 'S' moves the player downwards and 'D' moves the player to the right. 
-* 
+* For the keys assigned to facilitate this movement, 'W' moves the player upwards, 'A' moves the player to the left, 'S' moves the player downwards and 'D' moves the player to the right. 
+* Lastly, when the spacebar key is pressed, it will trigger the generation of projectile via the .push() array method, i.e., the location of the static projectile will be pushed into the missile array.
 
 ```javascript
 document.addEventListener("keydown", function(e){
@@ -126,4 +126,31 @@ function moveplayer1() {
     document.getElementById('player1').style.left = `${player1.left}px`;
 }
 
+```
+### Missiles Spawn & Movement
+* This code applies the same code logic as the one written for the **Enemy Spawn & Movement**.
+
+```javascript
+function drawMissiles() {
+    document.getElementById('missiles').innerHTML = ""
+    
+    for(let i = 0 ; i < missiles.length ; i++ ) {
+        document.getElementById('missiles').innerHTML += `<div class='missile1' style='left:${missiles[i].left}px; top:${missiles[i].top}px'></div>`; 
+    }
+
+}
+
+function moveMissiles() {
+    for(let i = 0 ; i < missiles.length ; i++ ) {
+        
+        if(missiles[i].left < 1200){
+        missiles[i].left = missiles[i].left + 8 //plus 8 px to projectile position... at a specific interval. 
+        }
+
+        else if(missiles[i].left >= 1200){
+        missiles.splice(i, 1) // stop missiles movement at 1200px 
+        }
+        
+    }
+}
 ```
