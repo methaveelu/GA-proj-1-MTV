@@ -155,4 +155,26 @@ function moveMissiles() {
 }
 ```
 ### Projectile and Enemy collision
-* A function with a nested for loop 
+* A function with a nested for loop will scan through the locations of both the 'missiles' array and 'enemiesLocation' array, to determine if they collided with each other. 
+* if the condition is true, the particular projectile and enemy will disappear via the .splice() array method.
+
+```javascript
+function bulletCollision() {
+  
+    for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
+        for (let missile1 = 0; missile1 < missiles.length; missile1 ++) {
+            if ( 
+                missiles[missile1].left <= (enemiesLocation[enemy].left + 90) &&
+                missiles[missile1].left >= enemiesLocation[enemy].left &&
+                missiles[missile1].top <= (enemiesLocation[enemy].top + 99) &&
+                (missiles[missile1].top + 80) >= enemiesLocation[enemy].top
+            ) 
+            {
+                enemiesLocation.splice(enemy, 1); 
+                missiles.splice(missile1, 1);
+               
+            } 
+        }
+    }
+}
+```
