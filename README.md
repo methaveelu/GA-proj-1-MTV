@@ -144,13 +144,15 @@ function moveMissiles() {
     for(let i = 0 ; i < missiles.length ; i++ ) {
         
         if(missiles[i].left < 1200){
-        missiles[i].left = missiles[i].left + 8 //plus 8 px to projectile position... at a specific interval. 
+        missiles[i].left = missiles[i].left + 8 
         }
 
         else if(missiles[i].left >= 1200){
-        missiles.splice(i, 1) // stop missiles movement at 1200px 
+        missiles.splice(i, 1) 
         }
         
     }
 }
 ```
+### Projectile and Enemy collision
+* A function with a nested for loop 
