@@ -178,3 +178,35 @@ function bulletCollision() {
     }
 }
 ```
+### Activate the Boss Enemy
+* A counter is created to activate the boss once 20 enemies are being killed, i.e., when the value of 'bulletCollideCount' falls from 20 to 0, the boss will appear.
+
+```javascript
+let bulletCollideCount = 20
+function bulletCollision() {
+/////////////////////////////////////
+{
+                // enemy and projectile will disappear once the if statement holds true.
+                enemiesLocation.splice(enemy, 1); 
+                missiles.splice(missile1, 1);
+                
+                if(bulletCollideCount>0){
+                    return bulletCollideCount--
+                }
+            } 
+        }
+    }
+    activateBoss()
+}
+
+let Boss = {
+    left: 600,
+    top: 20
+};
+function activateBoss(){
+    let fire = document.getElementById('enemies')
+    if (bulletCollideCount==0) {
+    document.getElementById('boss').style.display = "block";
+    }
+}
+```
