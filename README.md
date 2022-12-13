@@ -212,7 +212,7 @@ function activateBoss(){
 ```
 ### Enemy collision
 * This code applies a similar code logic as the one written for the **projectile and Enemy collision**. 
-* in summary, the for loop will scan through the 'enemiesLocation' array and check if the location value matches the player's location. At the onset of the collision, the enemy will disappear via the .splice() method.
+* in summary, the for loop will scan through the 'enemiesLocation' array and check if the location value matches the player's location. At the onset of the collision, the enemy will be made to disappear via the .splice() method.
 
 ```javascript
 function enemyPlayerCollision() {
@@ -227,5 +227,38 @@ function enemyPlayerCollision() {
                 enemiesLocation.splice(enemy, 1)
             } 
     }  
+}
+```
+### Game over
+*  A counter is created to define the criteria for 'Game over'. For this game, if the player collides with the enemy 8 times, the game will halt and a pop up will appear. When the ok button is clicked, the game will restart.
+
+```javascript
+let enemyCollideCount = 8
+function enemyPlayerCollision() {
+    for (///////////////////////////////////////////////) {
+            if ( 
+               //////////////////////////////////////////
+                )
+            {
+                enemiesLocation.splice(enemy, 1);
+               
+                if(enemyCollideCount>0){
+        
+                    return enemyCollideCount--
+                   
+                }
+            } 
+    }
+    gameOver()     
+}
+
+function gameOver() {
+    if (enemyCollideCount==0) {
+        document.getElementById("player1").style.display = "none";
+          if (window.confirm("GAME OVER MONKEY KING! Try Again?")) {
+            window.open("GAproj1.html");
+          }   
+    clearInterval(startgame)
+    }
 }
 ```
