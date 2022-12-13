@@ -184,9 +184,10 @@ function bulletCollision() {
 ```javascript
 let bulletCollideCount = 20
 function bulletCollision() {
-/////////////////////////////////////
-{
-                // enemy and projectile will disappear once the if statement holds true.
+
+/////////////Nested for loop////////////////////////
+
+            {   
                 enemiesLocation.splice(enemy, 1); 
                 missiles.splice(missile1, 1);
                 
