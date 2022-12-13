@@ -129,6 +129,7 @@ function moveplayer1() {
 ```
 ### Missiles Spawn & Movement
 * This code applies the same code logic as the one written for the **Enemy Spawn & Movement**.
+* in summary, the for loop will extract the missile location values and input them to a new 'missile1' div tag, such that the missile can be visualized at the respective locations. 
 
 ```javascript
 function drawMissiles() {
