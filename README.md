@@ -63,4 +63,4 @@ function drawEnemies() {
 }
 ```
 
-* Another function called 'moveEnemies' will access the enemy location array 
+* Another function called 'moveEnemies' will access the enemy location array and shift the enemy location to the left as long as its left property is more than zero. 
