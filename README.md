@@ -45,11 +45,22 @@ function enemySpawn() {
 setInterval(enemySpawn, 1000)
 ```
 ### Enemy Spawn & Movement
-* A function called 'drawEnemies' will extract the randomize enemy location values and input them to a new 'enemy' div tag, which will be recurssively created as long as the game is running.
+* A function called 'drawEnemies' which consist of a for loop will extract the randomize enemy location values and input them to a new 'enemy' div tag, such that the enemy can be visualized at the respective locations. This function will keep running unless the player has died. 
 
-- To ensure the enemy location is updated on the screen as it moves from left to right. 
+* After each iteration completed by the for loop, the initial location of enemy will be cleared to ensure the enemy doesnt spawn in a 'string' manner
 
-clears initial location of enemy to ensure enemy doesnt become a 'long train' fo enemies 
+```javascript
+function drawEnemies() {
 
-enemy will "appear and disappear" from left to right. 
+   document.getElementById('enemies').innerHTML = "" 
+    
+   for(let i = 0 ; i < enemiesLocation.length ; i++ ) {
 
+        document.getElementById('enemies').innerHTML += `<div class='enemy' style='left:${enemiesLocation[i].left}px; top:${enemiesLocation[i].top}px'></div>`;
+    
+    }
+
+}
+```
+
+###
