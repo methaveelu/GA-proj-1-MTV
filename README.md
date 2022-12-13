@@ -63,4 +63,21 @@ function drawEnemies() {
 }
 ```
 
-* Another function called 'moveEnemies' will access the enemy location array and shift the enemy location to the left as long as its left property is more than zero. 
+* Another function called 'moveEnemies' will access the enemy location array and ammend the enemy's left property as long as the value is more than zero. 
+
+* else if statement as shown will remove the enemy from the webpage once its left properties has hit the extreme left of the page. The array method splice is used to facilitate this removal.
+
+```javascript
+function moveEnemies() {
+    for(let i = 0 ; i < enemiesLocation.length ; i++ ) {
+        
+        if(enemiesLocation[i].left > 0){
+        enemiesLocation[i].left = enemiesLocation[i].left - 8;
+        }
+       
+        else if (enemiesLocation[i].left <= 0){
+        enemiesLocation.splice(i, 1)
+        }
+    }
+}
+```
