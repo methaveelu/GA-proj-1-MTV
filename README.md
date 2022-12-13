@@ -81,3 +81,49 @@ function moveEnemies() {
     }
 }
 ```
+### Move player 
+* The addEventListener() method is required to detect which key on the keyboard is pressed. Thereafter the function will process the movement of the player if one of the assigned keys are pressed. 
+* For the purpose of this game, 'W' moves the player upwards, 'A' moves the player to the left, 'S' moves the player downwards and 'D' moves the player to the right. 
+* 
+
+```javascript
+document.addEventListener("keydown", function(e){
+    
+    if (e.code === 'KeyW' && player1.top >= 0) {
+        
+        player1.top = player1.top - 20;
+        // console.log("Up");
+    }
+
+    if (e.code === 'KeyS' && player1.top <= 575) {
+        
+        player1.top = player1.top + 20;
+        // console.log("Down");
+    }
+    if (e.code === 'KeyA' && player1.left >= 0) {
+        
+        player1.left = player1.left - 20;
+        // console.log("Left");
+    }
+    if (e.code === 'KeyD' && player1.left <= 1280) {
+        
+        player1.left = player1.left + 20;
+        // console.log("Right");
+    }
+    if (e.code === 'Space') {
+
+        missiles.push({   
+            left: player1.left + 70,
+            top: player1.top 
+        });
+        
+    }
+    moveplayer1();
+})
+
+function moveplayer1() {
+    document.getElementById('player1').style.top = `${player1.top}px`;
+    document.getElementById('player1').style.left = `${player1.left}px`;
+}
+
+```
