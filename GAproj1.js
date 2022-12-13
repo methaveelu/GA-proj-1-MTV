@@ -2,9 +2,8 @@
 //initial player position
 let player1 = {
     left: 30,
-    top: 400
+    top: 300
 };
-
 
 //missile array to be filled up when the space bar is tapped
 let missiles = [];
@@ -16,8 +15,8 @@ let enemiesLocation = [];
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    return Math.floor(Math.random() * (max - min + 1)) + min; //math.round() gives non-uniform distribution
+} 
 let random_left = getRandomInt(1000, 1100);// this left px can stay fixed 
 let random_top = getRandomInt(0, 600); // top px should vary, but this only random generate once
 
@@ -28,7 +27,7 @@ function enemySpawn() {
     random_top = getRandomInt(0, 600); // top px varies every 1 sec due to interval
     enemiesLocation.push({left : random_left, top: random_top})
 }
-setInterval(enemySpawn, 1000)
+setInterval(enemySpawn, 800)
 
 
 // to ensure the enemy location is updated on the screen as it moves from left to right. 
@@ -139,7 +138,7 @@ function moveMissiles() {
 //////////////////////bullet and enemy collision/////////////////
 
 
-let bulletCollideCount = 10
+let bulletCollideCount = 20
 function bulletCollision() {
   
  // nested loop will help to detect collision of bullets & enemies 
@@ -148,7 +147,7 @@ function bulletCollision() {
     for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
         for (let missile1 = 0; missile1 < missiles.length; missile1 ++) {
             if ( 
-                missiles[missile1].left <= (enemiesLocation[enemy].left + 100) &&
+                missiles[missile1].left <= (enemiesLocation[enemy].left + 90) &&
                 missiles[missile1].left >= enemiesLocation[enemy].left &&
                 missiles[missile1].top <= (enemiesLocation[enemy].top + 99) &&
                 (missiles[missile1].top + 80) >= enemiesLocation[enemy].top
@@ -172,7 +171,7 @@ let Boss = {
     top: 20
 };
 function activateBoss(){
-    let fire = document.getElementById('enemies')
+    // let fire = document.getElementById('enemies')
     if (bulletCollideCount==0) {
     document.getElementById('boss').style.display = "block";
     //  fire.setAttribute('width', `${133}px` ) ;
@@ -240,7 +239,7 @@ function enemyPlayerCollision() {
 }
 
 
-////////////////health bar///////////////
+////////////////gameover///////////////
 function gameOver() {
     if (enemyCollideCount==0) {
         document.getElementById("player1").style.display = "none";
@@ -270,7 +269,7 @@ function loopGame() {
     // bulletOnBoss()
     
 }
-let startgame = setInterval(loopGame, 40)   
+let startgame = setInterval(loopGame, 30)   
 // startgame() 
 
 // do layering to ensure the health bar is above the player and monkey.
