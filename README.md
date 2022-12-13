@@ -205,9 +205,27 @@ let Boss = {
     top: 20
 };
 function activateBoss(){
-    let fire = document.getElementById('enemies')
     if (bulletCollideCount==0) {
     document.getElementById('boss').style.display = "block";
     }
+}
+```
+### Enemy collision
+* This code applies a similar code logic as the one written for the **projectile and Enemy collision**. 
+* in summary, the for loop will scan through the 'enemiesLocation' array and check if the location value matches the player's location. At the onset of the collision, the enemy will disappear via the .splice() method.
+
+```javascript
+function enemyPlayerCollision() {
+    for (let enemy = 0; enemy < enemiesLocation.length; enemy ++) {
+            if ( 
+                player1.left <= (enemiesLocation[enemy].left + 150) &&
+                (player1.left + 150) >= enemiesLocation[enemy].left  &&
+                player1.top <= (enemiesLocation[enemy].top + 99)  &&
+                (player1.top + 132) >= enemiesLocation[enemy].top 
+                )
+            {
+                enemiesLocation.splice(enemy, 1)
+            } 
+    }  
 }
 ```
