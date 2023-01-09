@@ -1,0 +1,86 @@
+#background {
+    width: 1280px;
+    height: 720px;
+    background-image: url('element_pictures/Mountain PNG Clip Art Image.png');
+    position: absolute;
+}
+
+#player1 {
+    width: 150px;
+    height: 132px;
+    background-image: url('element_pictures/player1monkeyy.png');
+    position: absolute; 
+    left: 30px;
+    top: 300px;
+}
+
+.enemy {
+    width: 150px;
+    height: 99px;
+    background-image: url('element_pictures/monster1.png');
+    position: absolute;
+    
+}
+
+#missiles {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+}
+
+.missile1 {
+    width: 80px;
+    height: 80px;
+    background-image: url('element_pictures/player_projectile.png');
+    position: absolute;
+} 
+
+#enemies {
+    width: 1280px; 
+    height: 720px;
+    position: absolute;
+} 
+
+#boss {
+    width: 430px;
+    height: 354px;
+    background-image: url('element_pictures/Boss.png');
+    position: absolute; 
+    left: 850px;
+    top: 200px;
+    display: none;
+}
+
+#bossProjectile {
+    width: 133px; 
+    height: 90px;
+    background-image: url('element_pictures/fire.png');
+    position: absolute;
+
+}
+/* heart shape */
+/* .heart { 
+    display: inline-block;
+    position: relative; 
+    width: 100px; 
+    height: 90px; 
+} 
+
+.heart:before, .heart:after { 
+    position: absolute; 
+    content: ""; 
+    left: 50px; 
+    top: 0; 
+    width: 50px; 
+    height: 80px; 
+    background: red; 
+    border-radius: 50px 50px 0 0; 
+    transform: rotate(-45deg); 
+    transform-origin: 0 100%; 
+} 
+
+.heart:after { 
+    left: 0; 
+    transform: rotate(45deg); 
+    transform-origin :100% 100%; 
+} */
